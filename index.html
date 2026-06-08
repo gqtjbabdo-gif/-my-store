@@ -1,28 +1,61 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
+    <title>Abdo Store - Live Stream</title>
     <style>
-        body { font-family: sans-serif; background: #1a0b2e; color: white; text-align: center; padding: 10px; }
-        .match-card { background: #4a148c; padding: 15px; margin: 10px auto; border-radius: 15px; width: 90%; }
-        .watch-btn { display: inline-block; margin-top: 10px; padding: 8px 20px; background: #ff9800; color: white; text-decoration: none; border-radius: 20px; font-weight: bold; }
+        body { 
+            background-color: #1a0b2e; 
+            color: white; 
+            font-family: sans-serif; 
+            text-align: center;
+        }
+        .match-card { 
+            background: #3a007d; 
+            margin: 20px auto; 
+            padding: 15px; 
+            border-radius: 10px; 
+            width: 80%;
+            max-width: 400px;
+        }
+        button {
+            background-color: #ff9800;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <h1>Abdo Store - بث مباشر</h1>
-    <div id="root">جاري تحديث البيانات...</div>
+
+    <h1>Abdo Store - Live Stream</h1>
+    <div id="matches-container">Updating data...</div>
+
     <script>
         fetch('matches.json')
-            .then(res => res.json())
+            .then(response => response.json())
             .then(data => {
-                document.getElementById('root').innerHTML = data.map(m => `
-                    <div class="match-card">
-                        <strong>${m.home} vs ${m.away}</strong><br>
-                        النتيجة: ${m.score}<br>
-                        <a href="${m.link || '#'}" class="watch-btn">مشاهدة المباراة</a>
-                    </div>
-                `).join('');
+                const container = document.getElementById('matches-container');
+                container.innerHTML = ''; 
+                
+                data.forEach(match => {
+                    container.innerHTML += `
+                        <div class="match-card">
+                            <p><strong>${match.teams}</strong></p>
+                            <p>Date: ${match.date}</p>
+                            <button>Watch Match</button>
+                        </div>
+                    `;
+                });
+            })
+            .catch(err => {
+                console.error('Error fetching data:', err);
+                document.getElementById('matches-container').innerHTML = "Failed to load matches.";
             });
     </script>
+
 </body>
 </html>
