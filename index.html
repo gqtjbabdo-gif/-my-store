@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <title>Abdo Store - Live Stream</title>
@@ -12,7 +12,7 @@
 <body>
 
     <h1>Abdo Store - Live Stream</h1>
-    <div id="matches-container">Updating data...</div>
+    <div id="matches-container">Loading matches...</div>
 
     <script>
         fetch('matches.json')
@@ -20,10 +20,13 @@
             .then(data => {
                 const container = document.getElementById('matches-container');
                 container.innerHTML = ''; 
+                
+                // التأكد من أن البيانات مصفوفة
                 data.forEach(match => {
                     container.innerHTML += `
                         <div class="match-card">
                             <p><strong>${match.teams}</strong></p>
+                            <p>Score: ${match.score}</p>
                             <p>Date: ${match.date}</p>
                             <button>Watch Match</button>
                         </div>
@@ -31,9 +34,10 @@
                 });
             })
             .catch(err => {
-                console.error('Error:', err);
+                console.error(err);
                 document.getElementById('matches-container').innerHTML = "Failed to load data.";
             });
     </script>
+
 </body>
 </html>
