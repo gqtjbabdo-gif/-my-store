@@ -23,4 +23,3 @@ jobs:
           git add matches.json
           git commit -m "Update match data" || echo "No changes"
           git push
-          
