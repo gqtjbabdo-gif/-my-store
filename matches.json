@@ -1,1 +1,25 @@
-[]
+<div id="matches-container">Loading matches...</div>
+
+<script>
+  // Fetching the data from your generated matches.json file
+  fetch('matches.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok: ' + response.statusText);
+      }
+      return response.json();
+    })
+    .then(data => {
+      const container = document.getElementById('matches-container');
+      
+      // Formatting the JSON data for better readability
+      const formattedData = JSON.stringify(data, null, 2);
+      
+      // Displaying the data inside a <pre> tag for proper formatting
+      container.innerHTML = `<pre>${formattedData}</pre>`;
+    })
+    .catch(error => {
+      console.error('Error loading matches:', error);
+      document.getElementById('matches-container').innerHTML = 'Failed to load matches.';
+    });
+</script>
