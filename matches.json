@@ -2,7 +2,7 @@
 
 <script>
   // Fetching the data from your generated matches.json file
-  fetch('matches.json')
+fetch('/-my-store/matches.json')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok: ' + response.statusText);
