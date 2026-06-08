@@ -1,27 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Password Generator</title>
-    <meta name="description" content="Password Generator — built on Replit. Update this description to reflect the app." />
-    <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="Password Generator" />
-    <meta property="og:description" content="Password Generator — built on Replit. Update this description to reflect the app." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Password Generator" />
-    <meta name="twitter:description" content="Password Generator — built on Replit. Update this description to reflect the app." />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">    <title>Secure Password Genie | مولد كلمات مرور قوية وآمنة</title>
-    <meta name="description" content="أداة سريعة وآمنة لتوليد كلمات مرور قوية ومعقدة لحماية حساباتك. تحكم في طول الكلمة والرموز بسهولة.">
-    <meta name="keywords" content="مولد كلمات مرور, Password Generator, كلمات مرور آمنة, secure passwords">
-    
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>Abdo Store</title>
+</head>
+<body>
+    <h1>أهلاً بك في متجر عبدو</h1>
+    <div id="root">جاري تحميل النتائج...</div>
+    <script>
+        // محاكاة بسيطة لعرض البيانات
+        fetch('matches.json')
+            .then(response => response.json())
+            .then(data => {
+                const root = document.getElementById('root');
+                root.innerHTML = '<ul>' + data.map(m => `<li>${m.home} vs ${m.away}: ${m.score}</li>`).join('') + '</ul>';
+            });
+    </script>
+</body>
 </html>
