@@ -1,0 +1,26 @@
+name: Update Matches
+
+on:
+  schedule:
+    - cron: '*/30 * * * *' # يقوم بالتحديث كل 30 دقيقة
+  workflow_dispatch: # يتيح لك تحديث النتائج يدوياً بضغطة زر
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Fetch and Update Matches
+        run: |
+          # هنا سيقوم السكربت بجلب النتائج (سنحدد المصدر لاحقاً)
+          echo "جاري تحديث النتائج..."
+          # تجربة: تحديث الملف ببيانات جديدة
+          echo '[{"home": "المغرب", "away": "تونس", "score": "3 - 0"}]' > matches.json
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add matches.json
+          git commit -m "تحديث تلقائي للنتائج"
+          git push
+          
