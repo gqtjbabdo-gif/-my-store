@@ -1,32 +1,33 @@
-name: Update Matches Data
+import requests
+from bs4 import BeautifulSoup
+import json
 
-on:
-  schedule:
-    - cron: '0 * * * *'
-  workflow_dispatch:
+# URL of the Native Stats page
+url = "https://native-stats.org/competition/fifa-world-cup/2026"
 
-jobs:
-  update-data:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+# Fetching the webpage content
+response = requests.get(url)
+soup = BeautifulSoup(response.content, 'html.parser')
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.9'
+matches = []
 
-      - name: Install dependencies
-        run: pip install requests beautifulsoup4
+# Scraping the match data
+# Note: Ensure the selectors '.match-row', '.teams', and '.date' 
+# match the actual HTML structure of the website.
+for row in soup.select('div.match-row'): 
+    try:
+        teams = row.select_one('.teams').text.strip()
+        date = row.select_one('.date').text.strip()
+        matches.append({
+            "teams": teams,
+            "date": date
+        })
+    except AttributeError:
+        # Skip rows that do not match the expected structure
+        continue
 
-      - name: Run script
-        run: python update_matches.py
+# Saving the data to a JSON file
+with open('matches.json', 'w', encoding='utf-8') as f:
+    json.dump(matches, f, ensure_ascii=False, indent=4)
 
-      - name: Commit and push changes
-        run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          git add matches.json
-          git commit -m "Update matches.json automatically"
-          git push
+print("Data has been successfully fetched and saved!")
