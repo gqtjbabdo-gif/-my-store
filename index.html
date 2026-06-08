@@ -1,43 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Abdo Store - Live Stream</title>
-    <style>
-        body { background-color: #1a0b2e; color: white; font-family: sans-serif; text-align: center; }
-        .match-card { background: #3a007d; margin: 20px auto; padding: 15px; border-radius: 10px; width: 80%; max-width: 400px; }
-        button { background-color: #ff9800; border: none; padding: 10px 20px; color: white; border-radius: 5px; cursor: pointer; font-weight: bold; }
-    </style>
 </head>
 <body>
-
-    <h1>Abdo Store - Live Stream</h1>
-    <div id="matches-container">Loading matches...</div>
+    <h1>Abdo Store</h1>
+    <div id="container">Loading...</div>
 
     <script>
-        fetch('matches.json')
-            .then(response => response.json())
+        fetch('./matches.json')
+            .then(res => res.json())
             .then(data => {
-                const container = document.getElementById('matches-container');
-                container.innerHTML = ''; 
-                
-                // التأكد من أن البيانات مصفوفة
-                data.forEach(match => {
-                    container.innerHTML += `
-                        <div class="match-card">
-                            <p><strong>${match.teams}</strong></p>
-                            <p>Score: ${match.score}</p>
-                            <p>Date: ${match.date}</p>
-                            <button>Watch Match</button>
-                        </div>
-                    `;
+                const container = document.getElementById('container');
+                container.innerHTML = '';
+                data.forEach(m => {
+                    container.innerHTML += `<p>${m.teams} - ${m.score}</p>`;
                 });
             })
-            .catch(err => {
-                console.error(err);
-                document.getElementById('matches-container').innerHTML = "Failed to load data.";
+            .catch(() => {
+                document.getElementById('container').innerText = "Error loading file";
             });
     </script>
-
 </body>
 </html>
