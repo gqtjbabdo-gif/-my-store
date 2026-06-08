@@ -1,19 +1,27 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Abdo Store</title>
+    <style>
+        body { font-family: sans-serif; background: #1a0b2e; color: white; text-align: center; padding: 10px; }
+        .match-card { background: #4a148c; padding: 15px; margin: 10px auto; border-radius: 15px; width: 90%; }
+        .watch-btn { display: inline-block; margin-top: 10px; padding: 8px 20px; background: #ff9800; color: white; text-decoration: none; border-radius: 20px; font-weight: bold; }
+    </style>
 </head>
 <body>
-    <h1>أهلاً بك في متجر عبدو</h1>
-    <div id="root">جاري تحميل النتائج...</div>
+    <h1>Abdo Store - بث مباشر</h1>
+    <div id="root">جاري تحديث البيانات...</div>
     <script>
-        // محاكاة بسيطة لعرض البيانات
         fetch('matches.json')
-            .then(response => response.json())
+            .then(res => res.json())
             .then(data => {
-                const root = document.getElementById('root');
-                root.innerHTML = '<ul>' + data.map(m => `<li>${m.home} vs ${m.away}: ${m.score}</li>`).join('') + '</ul>';
+                document.getElementById('root').innerHTML = data.map(m => `
+                    <div class="match-card">
+                        <strong>${m.home} vs ${m.away}</strong><br>
+                        النتيجة: ${m.score}<br>
+                        <a href="${m.link || '#'}" class="watch-btn">مشاهدة المباراة</a>
+                    </div>
+                `).join('');
             });
     </script>
 </body>
