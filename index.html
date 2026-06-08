@@ -1,32 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Abdo Store - Live Stream</title>
     <style>
-        body { 
-            background-color: #1a0b2e; 
-            color: white; 
-            font-family: sans-serif; 
-            text-align: center;
-        }
-        .match-card { 
-            background: #3a007d; 
-            margin: 20px auto; 
-            padding: 15px; 
-            border-radius: 10px; 
-            width: 80%;
-            max-width: 400px;
-        }
-        button {
-            background-color: #ff9800;
-            border: none;
-            padding: 10px 20px;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+        body { background-color: #1a0b2e; color: white; font-family: sans-serif; text-align: center; }
+        .match-card { background: #3a007d; margin: 20px auto; padding: 15px; border-radius: 10px; width: 80%; max-width: 400px; }
+        button { background-color: #ff9800; border: none; padding: 10px 20px; color: white; border-radius: 5px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -40,7 +20,6 @@
             .then(data => {
                 const container = document.getElementById('matches-container');
                 container.innerHTML = ''; 
-                
                 data.forEach(match => {
                     container.innerHTML += `
                         <div class="match-card">
@@ -52,10 +31,9 @@
                 });
             })
             .catch(err => {
-                console.error('Error fetching data:', err);
-                document.getElementById('matches-container').innerHTML = "Failed to load matches.";
+                console.error('Error:', err);
+                document.getElementById('matches-container').innerHTML = "Failed to load data.";
             });
     </script>
-
 </body>
 </html>
