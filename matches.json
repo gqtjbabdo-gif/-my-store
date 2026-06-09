@@ -1,13 +1,22 @@
 [
-    {
-        "homeTeam": {"name": "المغرب", "code": "MA"},
-        "awayTeam": {"name": "البرتغال", "code": "PT"},
-        "score": {"fullTime": {"home": 1, "away": 0}}
-    },
-    {
-        "homeTeam": {"name": "البرازيل", "code": "BR"},
-        "awayTeam": {"name": "فرنسا", "code": "FR"},
-        "score": {"fullTime": {"home": 2, "away": 2}}
-    }
+  {
+    "date": "2026-06-11",
+    "matches": [
+      {"home": {"name": "المكسيك", "code": "MX"}, "away": {"name": "جنوب أفريقيا", "code": "ZA"}, "time": "8:00 م"}
+    ]
+  },
+  {
+    "date": "2026-06-12",
+    "matches": [
+      {"home": {"name": "كوريا الجنوبية", "code": "KR"}, "away": {"name": "التشيك", "code": "CZ"}, "time": "3:00 ص"},
+      {"home": {"name": "كندا", "code": "CA"}, "away": {"name": "البوسنة", "code": "BA"}, "time": "8:00 م"}
+    ]
+  },
+  {
+    "date": "2026-06-13",
+    "matches": [
+      {"home": {"name": "أمريكا", "code": "US"}, "away": {"name": "باراغواي", "code": "PY"}, "time": "2:00 ص"},
+      {"home": {"name": "قطر", "code": "QA"}, "away": {"name": "سويسرا", "code": "CH"}, "time": "8:00 م"}
+    ]
+  }
 ]
-
