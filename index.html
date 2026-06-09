@@ -1,82 +1,54 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Match Schedule 2026</title>
+    <title>2026 World Cup Schedule</title>
     <style>
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            background-color: #1a1c23; 
-            color: white; 
-            margin: 0; 
-            padding: 15px; 
-        }
-        h2 { text-align: center; color: #f1f2f6; }
-        .date-header { 
-            background: #2f3542; 
-            padding: 10px; 
-            border-radius: 8px; 
-            margin-top: 20px; 
-            text-align: center; 
-            font-size: 0.95rem;
-            color: #ced6e0;
-        }
-        .match-card { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            background: #2f3542; 
-            padding: 12px; 
-            margin: 8px 0; 
-            border-radius: 8px; 
-            border-bottom: 2px solid #57606f; 
-        }
-        .team { 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-            font-size: 0.9rem; 
-            width: 40%; 
-        }
-        .team.away { justify-content: flex-end; }
-        .flag { width: 28px; border-radius: 3px; }
-        .time { 
-            font-weight: bold; 
-            color: #ffa502; 
-            font-size: 0.85rem; 
-            text-align: center;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1a1c23; color: white; padding: 15px; margin: 0; }
+        h2 { text-align: center; color: #ffa502; }
+        .date-header { background: #2f3542; padding: 10px; border-radius: 8px; margin: 20px 0 10px 0; text-align: center; font-weight: bold; color: #7ed6df; }
+        .match-card { display: flex; justify-content: space-between; align-items: center; background: #2f3542; padding: 12px; margin: 8px 0; border-radius: 8px; border-left: 4px solid #ffa502; }
+        .team { display: flex; align-items: center; gap: 10px; width: 40%; font-size: 0.9em; }
+        .team:nth-child(3) { justify-content: flex-end; }
+        .flag { width: 30px; height: 20px; border-radius: 3px; object-fit: cover; }
+        .time { font-weight: bold; color: white; background: #1a1c23; padding: 5px 10px; border-radius: 5px; font-size: 0.85em; }
     </style>
 </head>
 <body>
 
-    <h2>Match Schedule</h2>
+    <h2>2026 World Cup Schedule</h2>
     <div id="container"></div>
 
     <script>
-        fetch('matches.json')
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('container');
-                container.innerHTML = data.map(day => `
-                    <div class="date-group">
-                        <div class="date-header">${day.date} - Round 1</div>
-                        ${day.matches.map(m => `
-                            <div class="match-card">
-                                <div class="team">
-                                    ${m.home.name} <img class="flag" src="https://flagsapi.com/${m.home.code}/flat/64.png">
-                                </div>
-                                <div class="time">${m.time}</div>
-                                <div class="team away">
-                                    <img class="flag" src="https://flagsapi.com/${m.away.code}/flat/64.png"> ${m.away.name}
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                `).join('');
-            })
-            .catch(error => console.error('Error loading matches:', error));
+        // Data is embedded directly to ensure compatibility
+        const matchesData = [
+            {
+                "date": "Thursday, 2026-06-11",
+                "matches": [
+                    {"home": "Mexico", "homeCode": "MX", "away": "South Africa", "awayCode": "ZA", "time": "8:00 PM"}
+                ]
+            },
+            {
+                "date": "Friday, 2026-06-12",
+                "matches": [
+                    {"home": "South Korea", "homeCode": "KR", "away": "Czechia", "awayCode": "CZ", "time": "3:00 AM"},
+                    {"home": "Canada", "homeCode": "CA", "away": "Bosnia", "awayCode": "BA", "time": "8:00 PM"}
+                ]
+            }
+        ];
+
+        const container = document.getElementById('container');
+        container.innerHTML = matchesData.map(day => `
+            <div class="date-header">${day.date}</div>
+            ${day.matches.map(m => `
+                <div class="match-card">
+                    <div class="team">${m.home} <img class="flag" src="https://flagsapi.com/${m.homeCode}/flat/64.png"></div>
+                    <div class="time">${m.time}</div>
+                    <div class="team"><img class="flag" src="https://flagsapi.com/${m.awayCode}/flat/64.png"> ${m.away}</div>
+                </div>
+            `).join('')}
+        `).join('');
     </script>
 </body>
 </html>
