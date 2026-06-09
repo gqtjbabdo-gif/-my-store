@@ -2,43 +2,29 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdo Store - المباريات</title>
+    <title>نتائج المباريات</title>
     <style>
         body { font-family: sans-serif; padding: 20px; background-color: #f4f4f9; }
         .match-card { background: white; padding: 15px; margin-bottom: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .teams { font-weight: bold; font-size: 1.1em; }
-        .score { color: #d9534f; font-weight: bold; }
     </style>
 </head>
 <body>
-
-    <h1>نتائج المباريات</h1>
-    <div id="container">جاري تحميل المباريات...</div>
-
+    <h1>جدول المباريات</h1>
+    <div id="container">جاري التحميل...</div>
     <script>
         fetch('matches.json')
             .then(res => res.json())
             .then(data => {
                 const container = document.getElementById('container');
-                container.innerHTML = ''; 
-                
-                data.forEach(match => {
-                    const  = match.homeTeam.name;
-                    const awayTeam = match.awayTeam.name;
-                    const score = `${match.score.fullTime.home} - ${match.score.fullTime.away}`;
-                    
-                    container.innerHTML += `
-                        <div class="match-card">
-                            <div class="teams">${homeTeam} vs ${awayTeam}</div>
-                            <div class="score">النتيجة: ${score}</div>
-                            <small>التاريخ: ${new Date(match.utcDate).toLocaleString()}</small>
-                        </div>
-                    `;
-                });
+                container.innerHTML = data.map(m => `
+                    <div class="match-card">
+                        ${m.homeTeam.name} vs ${m.awayTeam.name}
+                        <br> النتيجة: ${m.score.fullTime.home ?? '-'} - ${m.score.fullTime.away ?? '-'}
+                    </div>
+                `).join('');
             })
-            .catch(() => {
-                document.getElementById('container').innerText = 'حدث خطأ في تحميل البيانات.';
+            .catch(err => {
+                document.getElementById('container').innerText = 'خطأ في تحميل البيانات.';
             });
     </script>
 </body>
