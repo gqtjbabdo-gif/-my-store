@@ -1,46 +1,82 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نتائج المباريات</title>
+    <title>Match Schedule 2026</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f0f2f5; padding: 15px; margin: 0; }
-        h1 { text-align: center; color: #1a1a1a; margin-bottom: 20px; }
-        .match-card { 
-            background: white; padding: 15px; margin-bottom: 12px; border-radius: 15px; 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.08); display: flex; 
-            justify-content: space-between; align-items: center; border-right: 5px solid #007bff;
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: #1a1c23; 
+            color: white; 
+            margin: 0; 
+            padding: 15px; 
         }
-        .team { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.95rem; }
-        .flag { width: 32px; height: 22px; border-radius: 4px; object-fit: cover; }
-        .score { font-size: 1.3rem; color: #007bff; font-weight: 800; background: #eef6ff; padding: 5px 12px; border-radius: 8px; }
+        h2 { text-align: center; color: #f1f2f6; }
+        .date-header { 
+            background: #2f3542; 
+            padding: 10px; 
+            border-radius: 8px; 
+            margin-top: 20px; 
+            text-align: center; 
+            font-size: 0.95rem;
+            color: #ced6e0;
+        }
+        .match-card { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background: #2f3542; 
+            padding: 12px; 
+            margin: 8px 0; 
+            border-radius: 8px; 
+            border-bottom: 2px solid #57606f; 
+        }
+        .team { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            font-size: 0.9rem; 
+            width: 40%; 
+        }
+        .team.away { justify-content: flex-end; }
+        .flag { width: 28px; border-radius: 3px; }
+        .time { 
+            font-weight: bold; 
+            color: #ffa502; 
+            font-size: 0.85rem; 
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
-    <h1>جدول المباريات</h1>
-    <div id="container">جاري التحميل...</div>
-    
+    <h2>Match Schedule</h2>
+    <div id="container"></div>
+
     <script>
         fetch('matches.json')
-            .then(res => res.json())
+            .then(response => response.json())
             .then(data => {
                 const container = document.getElementById('container');
-                container.innerHTML = data.map(m => `
-                    <div class="match-card">
-                        <div class="team">
-                            <img class="flag" src="https://flagsapi.com/${m.homeTeam.code}/flat/64.png" alt="flag">
-                            ${m.homeTeam.name}
-                        </div>
-                        <div class="score">${m.score.fullTime.home} - ${m.score.fullTime.away}</div>
-                        <div class="team">
-                            ${m.awayTeam.name}
-                            <img class="flag" src="https://flagsapi.com/${m.awayTeam.code}/flat/64.png" alt="flag">
-                        </div>
+                container.innerHTML = data.map(day => `
+                    <div class="date-group">
+                        <div class="date-header">${day.date} - Round 1</div>
+                        ${day.matches.map(m => `
+                            <div class="match-card">
+                                <div class="team">
+                                    ${m.home.name} <img class="flag" src="https://flagsapi.com/${m.home.code}/flat/64.png">
+                                </div>
+                                <div class="time">${m.time}</div>
+                                <div class="team away">
+                                    <img class="flag" src="https://flagsapi.com/${m.away.code}/flat/64.png"> ${m.away.name}
+                                </div>
+                            </div>
+                        `).join('')}
                     </div>
                 `).join('');
-            });
+            })
+            .catch(error => console.error('Error loading matches:', error));
     </script>
 </body>
 </html>
