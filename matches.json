@@ -1,1 +1,13 @@
-{"match": "example"}
+[
+    {
+        "homeTeam": {"name": "المغرب", "code": "MA"},
+        "awayTeam": {"name": "البرتغال", "code": "PT"},
+        "score": {"fullTime": {"home": 1, "away": 0}}
+    },
+    {
+        "homeTeam": {"name": "البرازيل", "code": "BR"},
+        "awayTeam": {"name": "فرنسا", "code": "FR"},
+        "score": {"fullTime": {"home": 2, "away": 2}}
+    }
+]
+
