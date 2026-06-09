@@ -2,15 +2,26 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نتائج المباريات</title>
     <style>
-        body { font-family: sans-serif; padding: 20px; background-color: #f4f4f9; }
-        .match-card { background: white; padding: 15px; margin-bottom: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f0f2f5; padding: 15px; margin: 0; }
+        h1 { text-align: center; color: #1a1a1a; margin-bottom: 20px; }
+        .match-card { 
+            background: white; padding: 15px; margin-bottom: 12px; border-radius: 15px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08); display: flex; 
+            justify-content: space-between; align-items: center; border-right: 5px solid #007bff;
+        }
+        .team { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.95rem; }
+        .flag { width: 32px; height: 22px; border-radius: 4px; object-fit: cover; }
+        .score { font-size: 1.3rem; color: #007bff; font-weight: 800; background: #eef6ff; padding: 5px 12px; border-radius: 8px; }
     </style>
 </head>
 <body>
+
     <h1>جدول المباريات</h1>
     <div id="container">جاري التحميل...</div>
+    
     <script>
         fetch('matches.json')
             .then(res => res.json())
@@ -18,13 +29,17 @@
                 const container = document.getElementById('container');
                 container.innerHTML = data.map(m => `
                     <div class="match-card">
-                        ${m.homeTeam.name} vs ${m.awayTeam.name}
-                        <br> النتيجة: ${m.score.fullTime.home ?? '-'} - ${m.score.fullTime.away ?? '-'}
+                        <div class="team">
+                            <img class="flag" src="https://flagsapi.com/${m.homeTeam.code}/flat/64.png" alt="flag">
+                            ${m.homeTeam.name}
+                        </div>
+                        <div class="score">${m.score.fullTime.home} - ${m.score.fullTime.away}</div>
+                        <div class="team">
+                            ${m.awayTeam.name}
+                            <img class="flag" src="https://flagsapi.com/${m.awayTeam.code}/flat/64.png" alt="flag">
+                        </div>
                     </div>
                 `).join('');
-            })
-            .catch(err => {
-                document.getElementById('container').innerText = 'خطأ في تحميل البيانات.';
             });
     </script>
 </body>
