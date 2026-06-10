@@ -5,50 +5,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2026 FIFA World Cup Schedule</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #1a1c23; color: white; padding: 15px; margin: 0; }
-        h2 { text-align: center; color: #ffa502; margin-bottom: 25px; }
-        .date-header { background: #2f3542; padding: 10px; border-radius: 8px; margin: 20px 0 10px 0; text-align: center; font-weight: bold; color: #7ed6df; }
-        .match-card { display: flex; justify-content: space-between; align-items: center; background: #2f3542; padding: 12px; margin: 8px 0; border-radius: 8px; border-left: 4px solid #ffa502; }
-        .team { display: flex; align-items: center; gap: 8px; width: 35%; font-size: 0.9em; }
-        .team:nth-child(3) { justify-content: flex-end; }
-        .flag { width: 25px; height: 25px; border-radius: 3px; object-fit: cover; }
-        .middle-section { display: flex; flex-direction: column; align-items: center; width: 30%; gap: 5px; }
-        .time { font-weight: bold; color: #fff; background: #1a1c23; padding: 4px 8px; border-radius: 4px; font-size: 0.75em; }
-        .watch-btn { background-color: #ff0000; color: white; padding: 5px 12px; border-radius: 5px; text-decoration: none; font-size: 0.75em; font-weight: bold; transition: background 0.3s; }
+        :root {
+            --bg-dark: #1a1c23;
+            --card-bg: #2f3542;
+            --accent-orange: #ffa502;
+            --accent-blue: #7ed6df;
+            --btn-red: #ff0000;
+        }
+
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: var(--bg-dark); 
+            color: #ffffff; 
+            padding: 20px; 
+            margin: 0; 
+        }
+
+        h2 { text-align: center; color: var(--accent-orange); margin-bottom: 30px; }
+
+        .date-header { 
+            background: var(--card-bg); 
+            padding: 10px; 
+            border-radius: 8px; 
+            margin: 20px 0 10px 0; 
+            text-align: center; 
+            font-weight: bold; 
+            color: var(--accent-blue); 
+        }
+
+        .match-card { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background: var(--card-bg); 
+            padding: 15px; 
+            margin: 10px 0; 
+            border-radius: 8px; 
+            border-left: 4px solid var(--accent-orange); 
+        }
+
+        .team { display: flex; align-items: center; gap: 10px; width: 35%; font-size: 0.95em; }
+        .team.away { justify-content: flex-end; }
+
+        .flag { width: 30px; height: 30px; border-radius: 4px; object-fit: cover; }
+
+        .middle-section { display: flex; flex-direction: column; align-items: center; width: 30%; gap: 8px; }
+
+        .time { 
+            font-weight: bold; 
+            color: #fff; 
+            background: var(--bg-dark); 
+            padding: 4px 10px; 
+            border-radius: 4px; 
+            font-size: 0.8em; 
+        }
+
+        .watch-btn { 
+            background-color: var(--btn-red); 
+            color: white; 
+            padding: 6px 16px; 
+            border-radius: 5px; 
+            text-decoration: none; 
+            font-size: 0.8em; 
+            font-weight: bold; 
+            transition: background 0.3s ease; 
+        }
+
         .watch-btn:hover { background-color: #cc0000; }
     </style>
 </head>
 <body>
 
     <h2>2026 World Cup Match Center</h2>
-    <div id="container"></div>
+    <div id="container">Loading match schedule...</div>
 
     <script>
-        const matchesData = [
-            { "date": "11 June", "matches": [ {"home": "Mexico", "homeCode": "MX", "away": "S. Africa", "awayCode": "ZA", "time": "8:00 PM"} ] },
-            { "date": "12 June", "matches": [ {"home": "S. Korea", "homeCode": "KR", "away": "Czechia", "awayCode": "CZ", "time": "8:00 PM"}, {"home": "Canada", "homeCode": "CA", "away": "Bosnia", "awayCode": "BA", "time": "8:00 PM"} ] },
-            { "date": "13 June", "matches": [ {"home": "USA", "homeCode": "US", "away": "Paraguay", "awayCode": "PY", "time": "2:00 AM"}, {"home": "Qatar", "homeCode": "QA", "away": "Switzerland", "awayCode": "CH", "time": "8:00 PM"} ] },
-            { "date": "14 June", "matches": [ {"home": "Brazil", "homeCode": "BR", "away": "Morocco", "awayCode": "MA", "time": "11:00 PM"}, {"home": "Haiti", "homeCode": "HT", "away": "Scotland", "awayCode": "GB-SCT", "time": "2:00 AM"}, {"home": "Australia", "homeCode": "AU", "away": "Turkey", "awayCode": "TR", "time": "5:00 AM"}, {"home": "Germany", "homeCode": "DE", "away": "Curacao", "awayCode": "CW", "time": "6:00 PM"}, {"home": "Netherlands", "homeCode": "NL", "away": "Japan", "awayCode": "JP", "time": "9:00 PM"} ] },
-            { "date": "15 June", "matches": [ {"home": "Ivory Coast", "homeCode": "CI", "away": "Ecuador", "awayCode": "EC", "time": "12:00 AM"}, {"home": "Sweden", "homeCode": "SE", "away": "Tunisia", "awayCode": "TN", "time": "3:00 AM"}, {"home": "Spain", "homeCode": "ES", "away": "Cape Verde", "awayCode": "CV", "time": "5:00 PM"}, {"home": "Belgium", "homeCode": "BE", "away": "Egypt", "awayCode": "EG", "time": "8:00 PM"} ] },
-            { "date": "16 June", "matches": [ {"home": "Saudi Arabia", "homeCode": "SA", "away": "Paraguay", "awayCode": "PY", "time": "11:00 PM"}, {"home": "Iran", "homeCode": "IR", "away": "New Zealand", "awayCode": "NZ", "time": "2:00 AM"}, {"home": "France", "homeCode": "FR", "away": "Senegal", "awayCode": "SN", "time": "8:00 PM"} ] },
-            { "date": "17 June", "matches": [ {"home": "Iraq", "homeCode": "IQ", "away": "Norway", "awayCode": "NO", "time": "11:00 PM"}, {"home": "Argentina", "homeCode": "AR", "away": "Algeria", "awayCode": "DZ", "time": "2:00 AM"}, {"home": "Austria", "homeCode": "AT", "away": "Jordan", "awayCode": "JO", "time": "5:00 AM"}, {"home": "Portugal", "homeCode": "PT", "away": "Congo", "awayCode": "CD", "time": "6:00 PM"}, {"home": "England", "homeCode": "GB-ENG", "away": "Croatia", "awayCode": "HR", "time": "9:00 PM"} ] },
-            { "date": "18 June", "matches": [ {"home": "Ghana", "homeCode": "GH", "away": "S. Africa", "awayCode": "ZA", "time": "5:00 PM"}, {"home": "Switzerland", "homeCode": "CH", "away": "Bosnia", "awayCode": "BA", "time": "8:00 PM"} ] }
-        ];
+        async function fetchMatches() {
+            try {
+                const response = await fetch('matches.json');
+                if (!response.ok) throw new Error('Failed to load JSON');
+                
+                const data = await response.json();
+                renderMatches(data);
+            } catch (error) {
+                console.error("Error loading data:", error);
+                document.getElementById('container').innerHTML = "<p style='text-align:center;'>Unable to load match schedule at this time.</p>";
+            }
+        }
 
-        const container = document.getElementById('container');
-        container.innerHTML = matchesData.map(day => `
-            <div class="date-header">${day.date}</div>
-            ${day.matches.map(m => `
-                <div class="match-card">
-                    <div class="team">${m.home} <img class="flag" src="https://flagsapi.com/${m.homeCode}/flat/64.png" alt="${m.home}"></div>
-                    <div class="middle-section">
-                        <div class="time">${m.time}</div>
-                        <a href="#" target="_blank" class="watch-btn">Watch Match</a>
+        function renderMatches(data) {
+            const container = document.getElementById('container');
+            container.innerHTML = data.map(day => `
+                <div class="date-header">${day.date}</div>
+                ${day.matches.map(m => `
+                    <div class="match-card">
+                        <div class="team">
+                            ${m.home} 
+                            <img class="flag" src="https://flagsapi.com/${m.homeCode}/flat/64.png" alt="${m.home}">
+                        </div>
+                        <div class="middle-section">
+                            <div class="time">${m.time}</div>
+                            <a href="${m.link}" target="_blank" class="watch-btn">Watch Match</a>
+                        </div>
+                        <div class="team away">
+                            <img class="flag" src="https://flagsapi.com/${m.awayCode}/flat/64.png" alt="${m.away}"> 
+                            ${m.away}
+                        </div>
                     </div>
-                    <div class="team"><img class="flag" src="https://flagsapi.com/${m.awayCode}/flat/64.png" alt="${m.away}"> ${m.away}</div>
-                </div>
-            `).join('')}
-        `).join('');
+                `).join('')}
+            `).join('');
+        }
+
+        // Initialize
+        fetchMatches();
     </script>
 </body>
 </html>
