@@ -1,26 +1,13 @@
 [
   {
-    "round": "Round 1",
-    "days": [
-      { "date": "2026-06-11", "matches": [ {"home": {"name": "المكسيك", "code": "MX"}, "away": {"name": "جنوب أفريقيا", "code": "ZA"}, "time": "8:00 م"} ] },
-      { "date": "2026-06-12", "matches": [ {"home": {"name": "كوريا الجنوبية", "code": "KR"}, "away": {"name": "التشيك", "code": "CZ"}, "time": "8:00 م"}, {"home": {"name": "كندا", "code": "CA"}, "away": {"name": "البوسنة", "code": "BA"}, "time": "8:00 م"} ] },
-      { "date": "2026-06-13", "matches": [ {"home": {"name": "الولايات المتحدة", "code": "US"}, "away": {"name": "باراغواي", "code": "PY"}, "time": "2:00 ص"}, {"home": {"name": "قطر", "code": "QA"}, "away": {"name": "سويسرا", "code": "CH"}, "time": "8:00 م"} ] },
-      { "date": "2026-06-14", "matches": [ {"home": {"name": "البرازيل", "code": "BR"}, "away": {"name": "المغرب", "code": "MA"}, "time": "11:00 م"}, {"home": {"name": "هايتي", "code": "HT"}, "away": {"name": "اسكتلندا", "code": "GB-SCT"}, "time": "2:00 ص"}, {"home": {"name": "أستراليا", "code": "AU"}, "away": {"name": "تركيا", "code": "TR"}, "time": "5:00 ص"}, {"home": {"name": "ألمانيا", "code": "DE"}, "away": {"name": "كوراساو", "code": "CW"}, "time": "6:00 م"}, {"home": {"name": "هولندا", "code": "NL"}, "away": {"name": "اليابان", "code": "JP"}, "time": "9:00 م"} ] },
-      { "date": "2026-06-15", "matches": [ {"home": {"name": "ساحل العاج", "code": "CI"}, "away": {"name": "الإكوادور", "code": "EC"}, "time": "12:00 ص"}, {"home": {"name": "السويد", "code": "SE"}, "away": {"name": "تونس", "code": "TN"}, "time": "3:00 ص"}, {"home": {"name": "إسبانيا", "code": "ES"}, "away": {"name": "الرأس الأخضر", "code": "CV"}, "time": "5:00 م"}, {"home": {"name": "بلجيكا", "code": "BE"}, "away": {"name": "مصر", "code": "EG"}, "time": "8:00 م"} ] },
-      { "date": "2026-06-16", "matches": [ {"home": {"name": "السعودية", "code": "SA"}, "away": {"name": "باراغواي", "code": "PY"}, "time": "11:00 م"}, {"home": {"name": "إيران", "code": "IR"}, "away": {"name": "نيوزيلندا", "code": "NZ"}, "time": "2:00 ص"}, {"home": {"name": "فرنسا", "code": "FR"}, "away": {"name": "السنغال", "code": "SN"}, "time": "8:00 م"} ] },
-      { "date": "2026-06-17", "matches": [ {"home": {"name": "العراق", "code": "IQ"}, "away": {"name": "النرويج", "code": "NO"}, "time": "11:00 م"}, {"home": {"name": "الأرجنتين", "code": "AR"}, "away": {"name": "الجزائر", "code": "DZ"}, "time": "2:00 ص"}, {"home": {"name": "النمسا", "code": "AT"}, "away": {"name": "الأردن", "code": "JO"}, "time": "5:00 ص"}, {"home": {"name": "البرتغال", "code": "PT"}, "away": {"name": "الكونغو", "code": "CD"}, "time": "6:00 م"}, {"home": {"name": "إنجلترا", "code": "GB-ENG"}, "away": {"name": "كرواتيا", "code": "HR"}, "time": "9:00 م"} ] },
-      { "date": "2026-06-18", "matches": [ {"home": {"name": "غانا", "code": "GH"}, "away": {"name": "جنوب أفريقيا", "code": "ZA"}, "time": "5:00 م"}, {"home": {"name": "سويسرا", "code": "CH"}, "away": {"name": "البوسنة", "code": "BA"}, "time": "8:00 م"} ] }
-    ]
-  },
-  {
-    "round": "Round 2",
-    "days": [
-      { "date": "2026-06-19", "matches": [ {"home": {"name": "كندا", "code": "CA"}, "away": {"name": "قطر", "code": "QA"}, "time": "11:00 م"}, {"home": {"name": "المكسيك", "code": "MX"}, "away": {"name": "كوريا الجنوبية", "code": "KR"}, "time": "2:00 ص"}, {"home": {"name": "الولايات المتحدة", "code": "US"}, "away": {"name": "أستراليا", "code": "AU"}, "time": "8:00 م"} ] },
-      { "date": "2026-06-20", "matches": [ {"home": {"name": "اسكتلندا", "code": "GB-SCT"}, "away": {"name": "المغرب", "code": "MA"}, "time": "11:00 م"}, {"home": {"name": "البرازيل", "code": "BR"}, "away": {"name": "هايتي", "code": "HT"}, "time": "1:30 ص"}, {"home": {"name": "تركيا", "code": "TR"}, "away": {"name": "باراغواي", "code": "PY"}, "time": "4:00 ص"}, {"home": {"name": "هولندا", "code": "NL"}, "away": {"name": "السويد", "code": "SE"}, "time": "6:00 م"}, {"home": {"name": "ألمانيا", "code": "DE"}, "away": {"name": "ساحل العاج", "code": "CI"}, "time": "9:00 م"} ] },
-      { "date": "2026-06-21", "matches": [ {"home": {"name": "الإكوادور", "code": "EC"}, "away": {"name": "كوراساو", "code": "CW"}, "time": "11:00 م"}, {"home": {"name": "تونس", "code": "TN"}, "away": {"name": "اليابان", "code": "JP"}, "time": "5:00 م"}, {"home": {"name": "إسبانيا", "code": "ES"}, "away": {"name": "السعودية", "code": "SA"}, "time": "5:00 م"}, {"home": {"name": "بلجيكا", "code": "BE"}, "away": {"name": "إيران", "code": "IR"}, "time": "8:00 م"} ] },
-      { "date": "2026-06-22", "matches": [ {"home": {"name": "أوروغواي", "code": "UY"}, "away": {"name": "الرأس الأخضر", "code": "CV"}, "time": "11:00 م"}, {"home": {"name": "نيوزيلندا", "code": "NZ"}, "away": {"name": "مصر", "code": "EG"}, "time": "2:00 ص"}, {"home": {"name": "الأرجنتين", "code": "AR"}, "away": {"name": "النمسا", "code": "AT"}, "time": "6:00 م"} ] },
-      { "date": "2026-06-23", "matches": [ {"home": {"name": "فرنسا", "code": "FR"}, "away": {"name": "العراق", "code": "IQ"}, "time": "1:00 ص"}, {"home": {"name": "النرويج", "code": "NO"}, "away": {"name": "السنغال", "code": "SN"}, "time": "1:00 ص"}, {"home": {"name": "الأردن", "code": "JO"}, "away": {"name": "الجزائر", "code": "DZ"}, "time": "4:00 ص"}, {"home": {"name": "البرتغال", "code": "PT"}, "away": {"name": "أوزبكستان", "code": "UZ"}, "time": "6:00 م"}, {"home": {"name": "إنجلترا", "code": "GB-ENG"}, "away": {"name": "غانا", "code": "GH"}, "time": "9:00 م"} ] },
-      { "date": "2026-06-24", "matches": [ {"home": {"name": "بنما", "code": "PA"}, "away": {"name": "كرواتيا", "code": "HR"}, "time": "12:00 ص"}, {"home": {"name": "كولومبيا", "code": "CO"}, "away": {"name": "الكونغو", "code": "CD"}, "time": "3:00 ص"}, {"home": {"name": "سويسرا", "code": "CH"}, "away": {"name": "كندا", "code": "CA"}, "time": "8:00 م"}, {"home": {"name": "البوسنة", "code": "BA"}, "away": {"name": "قطر", "code": "QA"}, "time": "8:00 م"} ] }
+    "date": "June 11, 2026",
+    "matches": [
+      { 
+        "home": "Mexico", "homeCode": "MX", 
+        "away": "South Africa", "awayCode": "ZA", 
+        "time": "8:00 PM", 
+        "link": "https://short-url.com/match123" 
+      }
     ]
   }
 ]
