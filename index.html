@@ -5,35 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2026 FIFA World Cup Schedule – Full Match Fixtures & Times</title>
     
-    <!-- Google Site Verification -->
     <meta name="google-site-verification" content="F8KpDV1SmbkV6ksgYeYOtd_eDE2oGtBhb_C42MOsk-0" />
-
-    <!-- Primary SEO -->
-    <meta name="description" content="Complete 2026 FIFA World Cup schedule with all group stage, knockout, and final match dates and times. Follow Brazil, Argentina, France, England, Germany and all 48 teams live.">
-    <meta name="keywords" content="World Cup 2026, FIFA World Cup 2026, football schedule, soccer fixtures, World Cup matches, 2026 World Cup dates, كأس العالم 2026, جدول مباريات كأس العالم 2026">
-    <meta name="author" content="2026 World Cup Schedule">
+    <meta name="description" content="Complete 2026 FIFA World Cup schedule with all match dates and times. Follow all 48 teams live on our updated match center.">
+    <meta name="keywords" content="World Cup 2026, FIFA World Cup 2026, football schedule, soccer fixtures, World Cup matches, 2026 World Cup dates, جدول مباريات كأس العالم 2026">
     <meta name="robots" content="index, follow">
-    <!-- الرابط المحدث لـ GitHub -->
     <link rel="canonical" href="https://gqtjbabdo-gif.github.io/-my-store/">
 
-    <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+    <!-- Open Graph for Social Sharing -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://gqtjbabdo-gif.github.io/-my-store/">
     <meta property="og:title" content="2026 FIFA World Cup Schedule – All Match Fixtures & Times">
     <meta property="og:description" content="Complete fixture list for the 2026 FIFA World Cup. Group stage, knockout rounds, and final – all match times in one place.">
     <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/en/thumb/4/44/2026_FIFA_World_Cup.svg/800px-2026_FIFA_World_Cup.svg.png">
-    <meta property="og:image:width" content="800">
-    <meta property="og:image:height" content="800">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:locale:alternate" content="ar_SA">
 
-    <!-- Twitter / X Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="2026 FIFA World Cup Schedule – All Match Fixtures & Times">
-    <meta name="twitter:description" content="Complete fixture list for the 2026 FIFA World Cup. Group stage, knockout rounds, and final – all match times in one place.">
-    <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/en/thumb/4/44/2026_FIFA_World_Cup.svg/800px-2026_FIFA_World_Cup.svg.png">
-
-    <!-- Structured Data: SportsSeries (JSON-LD) -->
+    <!-- JSON-LD Structured Data for SEO -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -41,39 +26,25 @@
       "name": "2026 FIFA World Cup",
       "startDate": "2026-06-11",
       "endDate": "2026-07-19",
-      "location": {
-        "@type": "Place",
-        "name": "USA, Canada & Mexico",
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": ["US", "CA", "MX"]
-        }
-      },
-      "organizer": {
-        "@type": "Organization",
-        "name": "FIFA",
-        "url": "https://www.fifa.com"
-      },
       "sport": "Soccer",
-      "url": "https://gqtjbabdo-gif.github.io/-my-store/",
-      "description": "Complete schedule and fixtures for the 2026 FIFA World Cup hosted across the United States, Canada, and Mexico."
+      "description": "Complete schedule and fixtures for the 2026 FIFA World Cup."
     }
     </script>
 
     <style>
-        body { font-family: sans-serif; background-color: #1a1c23; color: white; padding: 10px; margin: 0; }
-        h2 { text-align: center; color: #ffa502; margin-bottom: 20px; }
-        .date-header { background: #2f3542; padding: 10px; border-radius: 8px; margin: 15px 0; text-align: center; font-weight: bold; color: #7ed6df; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #1a1c23; color: white; padding: 15px; margin: 0; }
+        h2 { text-align: center; color: #ffa502; margin-bottom: 25px; }
+        .date-header { background: #2f3542; padding: 10px; border-radius: 8px; margin: 20px 0 10px 0; text-align: center; font-weight: bold; color: #7ed6df; }
         .match-card { display: flex; justify-content: space-between; align-items: center; background: #2f3542; padding: 12px; margin: 8px 0; border-radius: 8px; border-left: 4px solid #ffa502; }
         .team { display: flex; align-items: center; gap: 8px; width: 40%; font-size: 0.9em; }
         .team:nth-child(3) { justify-content: flex-end; }
-        .flag { width: 25px; border-radius: 3px; }
-        .time { font-weight: bold; color: #fff; background: #1a1c23; padding: 4px 8px; border-radius: 4px; font-size: 0.8em; }
+        .flag { width: 25px; height: 25px; border-radius: 3px; object-fit: cover; }
+        .time { font-weight: bold; color: #fff; background: #1a1c23; padding: 4px 8px; border-radius: 4px; font-size: 0.75em; }
     </style>
 </head>
 <body>
 
-    <h2>2026 World Cup Schedule</h2>
+    <h2>2026 World Cup Match Center</h2>
     <div id="container"></div>
 
     <script>
@@ -93,9 +64,9 @@
             <div class="date-header">${day.date}</div>
             ${day.matches.map(m => `
                 <div class="match-card">
-                    <div class="team">${m.home} <img class="flag" src="https://flagsapi.com/${m.homeCode}/flat/64.png"></div>
+                    <div class="team">${m.home} <img class="flag" src="https://flagsapi.com/${m.homeCode}/flat/64.png" alt="${m.home}"></div>
                     <div class="time">${m.time}</div>
-                    <div class="team"><img class="flag" src="https://flagsapi.com/${m.awayCode}/flat/64.png"> ${m.away}</div>
+                    <div class="team"><img class="flag" src="https://flagsapi.com/${m.awayCode}/flat/64.png" alt="${m.away}"> ${m.away}</div>
                 </div>
             `).join('')}
         `).join('');
