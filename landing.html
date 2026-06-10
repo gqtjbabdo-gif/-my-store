@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Ready</title>
+    <style>
+        :root {
+            --bg-color: #1a1c23;
+            --accent-red: #ff0000;
+            --hover-red: #cc0000;
+        }
+
+        body { 
+            background-color: var(--bg-color); 
+            color: #ffffff; 
+            text-align: center; 
+            padding: 50px 20px; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+        }
+
+        h1 { margin-bottom: 10px; }
+        p { color: #b2bec3; margin-bottom: 30px; }
+
+        .btn { 
+            background-color: var(--accent-red); 
+            padding: 18px 40px; 
+            text-decoration: none; 
+            color: white; 
+            border-radius: 8px; 
+            font-size: 1.2em; 
+            font-weight: bold; 
+            display: inline-block; 
+            transition: background 0.3s ease; 
+        }
+
+        .btn:hover { background-color: var(--hover-red); }
+    </style>
+</head>
+<body>
+
+    <h1>Stream is Ready</h1>
+    <p>Click the button below to proceed to the match.</p>
+    
+    <a href="#" id="watchLink" class="btn">Click here to Watch</a>
+
+    <script>
+        // Extract the 'link' parameter safely
+        const urlParams = new URLSearchParams(window.location.search);
+        const destination = urlParams.get('link');
+
+        const watchBtn = document.getElementById('watchLink');
+
+        if (destination) {
+            watchBtn.href = destination;
+        } else {
+            watchBtn.textContent = "Invalid Link";
+            watchBtn.style.backgroundColor = "#636e72";
+            watchBtn.style.pointerEvents = "none";
+        }
+    </script>
+</body>
+</html>
