@@ -9,14 +9,19 @@ def fetch_and_update():
     # API endpoint for World Cup matches
     url = "https://api.football-data.org/v4/competitions/WC/matches"
     
-    # Use the key directly (Note: It is safer to use environment variables)
-    api_key = "6dfdbc970367471aac79265084134f31"
+    # Retrieve API key from environment variables
+    api_key = os.getenv('API_KEY')
+    
+    if not api_key:
+        print("Error: API_KEY not found in environment variables.")
+        return
+
     headers = {'X-Auth-Token': api_key}
     
     try:
         # Request data from the API
         response = requests.get(url, headers=headers)
-        response.raise_for_status()  # Check for HTTP errors
+        response.raise_for_status()
         data = response.json()
         
         # Format the data
@@ -39,7 +44,7 @@ def fetch_and_update():
                 }
             })
         
-        # Save to file
+        # Save the formatted data to matches.json
         with open('matches.json', 'w', encoding='utf-8') as f:
             json.dump(formatted_matches, f, ensure_ascii=False, indent=4)
         
