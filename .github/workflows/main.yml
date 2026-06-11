@@ -25,21 +25,28 @@ jobs:
       - name: Run script
         env:
           API_KEY: ${{ secrets.API_KEY }}
-        run: python update_matches.py
+        run: |
+          echo "Starting script..."
+          python update_matches.py
+          echo "Script finished."
+          ls -l matches.json
 
       - name: Commit and push changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
-          # Pull latest changes to avoid merge conflicts
-          git pull origin main --rebase
+          # Sync with remote repository
+          git fetch origin main
+          git reset --hard origin/main
           
-          # Stage the updated file
+          # Stage the file
           git add matches.json
           
-          # Commit only if there are changes
-          git commit -m "Update matches.json" || echo "No changes to commit"
-          
-          # Push the changes back to the repository
-          git push origin main
+          # Commit and push only if there are changes
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update matches.json via GitHub Action"
+            git push origin main
+          fi
