@@ -42,22 +42,24 @@
     <h1>Stream is Ready</h1>
     <p>Click the button below to proceed to the match.</p>
     
-    <a href="#" id="watchLink" class="btn">Click here to Watch</a>
+    <a href="#" id="watchLink" class="btn" rel="noopener noreferrer">Click here to Watch</a>
 
     <script>
-        // Extract the 'link' parameter safely
-        const urlParams = new URLSearchParams(window.location.search);
-        const destination = urlParams.get('link');
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const destination = urlParams.get('link');
+            const watchBtn = document.getElementById('watchLink');
 
-        const watchBtn = document.getElementById('watchLink');
-
-        if (destination) {
-            watchBtn.href = destination;
-        } else {
-            watchBtn.textContent = "Invalid Link";
-            watchBtn.style.backgroundColor = "#636e72";
-            watchBtn.style.pointerEvents = "none";
-        }
+            if (destination && destination.startsWith('http')) {
+                watchBtn.href = destination;
+                watchBtn.target = "_blank"; // لفتح الرابط في صفحة جديدة
+            } else {
+                watchBtn.textContent = "Invalid Link";
+                watchBtn.style.backgroundColor = "#636e72";
+                watchBtn.style.pointerEvents = "none";
+                watchBtn.removeAttribute("href");
+            }
+        });
     </script>
 </body>
 </html>
