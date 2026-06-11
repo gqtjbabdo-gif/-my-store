@@ -23,6 +23,8 @@ jobs:
         run: pip install requests
 
       - name: Run script
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
         run: |
           python update_matches.py
           echo "Checking file content:"
@@ -32,6 +34,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git pull origin main --rebase
           git add matches.json
           git commit -m "Update matches.json" || echo "No changes to commit"
           git push -f origin main
