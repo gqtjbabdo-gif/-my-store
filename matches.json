@@ -2,8 +2,8 @@
   {
     "date": "June 11, 2026",
     "matches": [
-      [{"home": "Mexico", "homeCode": "MX", "away": "South Africa", "awayCode": "ZA", "time": "8:00 PM", "link": "https://link-center.net/6427270/HMiPdW0eToJK"}]
-    ]
+      {"home": "Mexico", "homeCode": "MX", "away": "South Africa", "awayCode": "ZA", "time": "8:00 PM", "link": "https://link-center.net/6427270/HMiPdW0eToJK"}
+    
   },
   {
     "date": "June 12, 2026",
