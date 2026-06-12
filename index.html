@@ -6,6 +6,7 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
+
       gtag('config', 'G-3VQB84YVD5');
     </script>
     
@@ -43,37 +44,55 @@
     <div id="container"></div>
 
     <script>
-        async function loadMatches() {
-            try {
-                const response = await fetch('matches.json');
-                const data = await response.json();
-                const container = document.getElementById('container');
-                
-                container.innerHTML = data.map(day => `
-                    <div class="date-header">${day.date}</div>
-                    ${day.matches.map(m => `
-                        <div class="match-card">
-                            <div class="team">
-                                ${m.home} 
-                                <img class="flag" src="https://flagsapi.com/${m.homeCode}/flat/64.png" alt="${m.home}">
-                            </div>
-                            <div class="middle-section">
-                                <div class="time">${m.time}</div>
-                                <a href="${m.link}" target="_blank" class="watch-btn">Watch Match</a>
-                            </div>
-                            <div class="team away">
-                                <img class="flag" src="https://flagsapi.com/${m.awayCode}/flat/64.png" alt="${m.away}"> 
-                                ${m.away}
-                            </div>
+        const matchesData = [
+            { "date": "June 11, 2026", "matches": [{ "home": "Mexico", "homeCode": "MX", "away": "South Africa", "awayCode": "ZA", "time": "8:00 PM", "link": "https://link-center.net/6427270/HMiPdW0eToJK" }] },
+            { "date": "June 12, 2026", "matches": [
+                { "home": "South Korea", "homeCode": "KR", "away": "Czechia", "awayCode": "CZ", "time": "8:00 PM", "link": "#" },
+                { "home": "Canada", "homeCode": "CA", "away": "Bosnia", "awayCode": "BA", "time": "8:00 PM", "link": "#" }
+            ]},
+            { "date": "June 13, 2026", "matches": [
+                { "home": "USA", "homeCode": "US", "away": "Paraguay", "awayCode": "PY", "time": "2:00 AM", "link": "#" },
+                { "home": "Qatar", "homeCode": "QA", "away": "Switzerland", "awayCode": "CH", "time": "8:00 PM", "link": "#" }
+            ]},
+            { "date": "June 14, 2026", "matches": [
+                { "home": "Brazil", "homeCode": "BR", "away": "Morocco", "awayCode": "MA", "time": "11:00 PM", "link": "#" },
+                { "home": "Haiti", "homeCode": "HT", "away": "Scotland", "awayCode": "GB-SCT", "time": "2:00 AM", "link": "#" },
+                { "home": "Australia", "homeCode": "AU", "away": "Turkey", "awayCode": "TR", "time": "5:00 AM", "link": "#" },
+                { "home": "Germany", "homeCode": "DE", "away": "Curacao", "awayCode": "CW", "time": "6:00 PM", "link": "#" },
+                { "home": "Netherlands", "homeCode": "NL", "away": "Japan", "awayCode": "JP", "time": "9:00 PM", "link": "#" }
+            ]},
+            { "date": "June 15, 2026", "matches": [
+                { "home": "Ivory Coast", "homeCode": "CI", "away": "Ecuador", "awayCode": "EC", "time": "12:00 AM", "link": "#" },
+                { "home": "Sweden", "homeCode": "SE", "away": "Tunisia", "awayCode": "TN", "time": "3:00 AM", "link": "#" },
+                { "home": "Spain", "homeCode": "ES", "away": "Cape Verde", "awayCode": "CV", "time": "5:00 PM", "link": "#" },
+                { "home": "Belgium", "homeCode": "BE", "away": "Egypt", "awayCode": "EG", "time": "8:00 PM", "link": "#" }
+            ]}
+        ];
+
+        function renderMatches(data) {
+            const container = document.getElementById('container');
+            container.innerHTML = data.map(day => `
+                <div class="date-header">${day.date}</div>
+                ${day.matches.map(m => `
+                    <div class="match-card">
+                        <div class="team">
+                            ${m.home} 
+                            <img class="flag" src="https://flagsapi.com/${m.homeCode}/flat/64.png" alt="${m.home}">
                         </div>
-                    `).join('')}
-                `).join('');
-            } catch (error) {
-                console.error('Error loading matches:', error);
-            }
+                        <div class="middle-section">
+                            <div class="time">${m.time}</div>
+                            <a href="${m.link}" target="_blank" class="watch-btn">Watch Match</a>
+                        </div>
+                        <div class="team away">
+                            <img class="flag" src="https://flagsapi.com/${m.awayCode}/flat/64.png" alt="${m.away}"> 
+                            ${m.away}
+                        </div>
+                    </div>
+                `).join('')}
+            `).join('');
         }
 
-        loadMatches();
+        renderMatches(matchesData);
     </script>
 </body>
 </html>
