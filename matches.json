@@ -1,11 +1,157 @@
 [
   {
+    "date": "2026/06/11",
     "matches": [
-      {
-        "home": "فريق أ",
-        "away": "فريق ب",
-        "link": "https://www.google.com"
-      }
+      { "home": "المكسيك", "away": "جنوب أفريقيا", "time": "8:00", "link": "https://example.com" }
+    ]
+  },
+  {
+    "date": "2026/06/12",
+    "matches": [
+      { "home": "كوريا الجنوبية", "away": "التشيك", "time": "8:00", "link": "https://example.com" },
+      { "home": "كندا", "away": "البوسنة والهرسك", "time": "8:00", "link": "https://example.com" }
+    ]
+  },
+  {
+    "date": "2026/06/13",
+    "matches": [
+      { "home": "الولايات المتحدة", "away": "باراغواي", "time": "2:00", "link": "https://example.com" },
+      { "home": "قطر", "away": "سويسرا", "time": "8:00", "link": "https://example.com" }
+    ]
+  },
+  {
+    "date": "2026/06/14",
+    "matches": [
+      { "home": "البرازيل", "away": "المغرب", "time": "11:00", "link": "https://example.com" },
+      { "home": "هايتي", "away": "اسكتلندا", "time": "2:00", "link": "https://example.com" },
+      { "home": "أستراليا", "away": "تركيا", "time": "5:00", "link": "https://example.com" },
+      { "home": "ألمانيا", "away": "كوراساو", "time": "6:00", "link": "https://example.com" },
+      { "home": "هولندا", "away": "اليابان", "time": "9:00", "link": "https://example.com" }
+    ]
+  },
+  {
+    "date": "2026/06/15",
+    "matches": [
+      { "home": "ساحل العاج", "away": "الإكوادور", "time": "12:00", "link": "https://example.com" },
+      { "home": "السويد", "away": "تونس", "time": "3:00", "link": "https://example.com" },
+      { "home": "إسبانيا", "away": "الرأس الأخضر", "time": "5:00", "link": "https://example.com" },
+      { "home": "بلجيكا", "away": "مصر", "time": "8:00", "link": "https://example.com" }
+    ]
+  },
+  {
+    "date": "2026/06/16",
+    "matches": [
+      { "home": "السعودية", "away": "باراغواي", "time": "11:00", "link": "https://example.com" },
+      { "home": "إيران", "away": "نيوزيلندا", "time": "2:00", "link": "https://example.com" },
+      { "home": "فرنسا", "away": "السنغال", "time": "8:00", "link": "https://example.com" }
+    ]
+  },
+  {
+    "date": "2026/06/17",
+    "matches": [
+      { "home": "العراق", "away": "النرويج", "time": "11:00", "link": "https://example.com" },
+      { "home": "الأرجنتين", "away": "الجزائر", "time": "2:00", "link": "https://example.com" },
+      { "home": "النمسا", "away": "الأردن", "time": "5:00", "link": "https://example.com" },
+      { "home": "البرتغال", "away": "الكونغو", "time": "6:00", "link": "https://example.com" },
+      { "home": "إنجلترا", "away": "كرواتيا", "time": "9:00", "link": "https://example.com" }
+    ]
+  },
+  {
+    "date": "2026/06/18",
+    "matches": [
+      { "home": "غانا", "away": "جنوب أفريقيا", "time": "5:00", "link": "https://example.com" },
+      { "home": "سويسرا", "away": "البوسنة", "time": "8:00", "link": "https://example.com" }
+    ]
+  },
+  {
+    "date": "2026/06/20",
+    "matches": [
+      { "home": "كندا", "away": "قطر", "time": "11:00", "link": "https://example.com" },
+      { "home": "المكسيك", "away": "كوريا الجنوبية", "time": "2:00", "link": "https://example.com" },
+      { "home": "الولايات المتحدة", "away": "أستراليا", "time": "8:00", "link": "https://example.com" },
+      { "home": "اسكتلندا", "away": "المغرب", "time": "11:00", "link": "https://example.com" },
+      { "home": "البرازيل", "away": "هايتي", "time": "1:30", "link": "https://example.com" },
+      { "home": "تركيا", "away": "باراغواي", "time": "4:00", "link": "https://example.com" },
+      { "home": "هولندا", "away": "السويد", "time": "6:00", "link": "https://example.com" },
+      { "home": "ألمانيا", "away": "ساحل العاج", "time": "9:00", "link": "https://example.com" }
+    ]
+  },
+  {
+    "date": "2026/06/21",
+    "matches": [
+      { "home": "الإكوادور", "away": "كوراساو", "time": "11:00", "link": "https://example.com" },
+      { "home": "تونس", "away": "اليابان", "time": "5:00", "link": "https://example.com" },
+      { "home": "إسبانيا", "away": "السعودية", "time": "5:00", "link": "https://example.com" },
+      { "home": "بلجيكا", "away": "إيران", "time": "8:00", "link": "https://example.com" }
+    ]
+  },
+  {
+    "date": "2026/06/22",
+    "matches": [
+      { "home": "الأوروغواي", "away": "الرأس الأخضر", "time": "11:00", "link": "https://example.com" },
+      { "home": "نيوزيلندا", "away": "مصر", "time": "2:00", "link": "https://example.com" },
+      { "home": "الأرجنتين", "away": "النمسا", "time": "6:00", "link": "https://example.com" }
+    ]
+  },
+  {
+    "date": "2026/06/23",
+    "matches": [
+      { "home": "فرنسا", "away": "العراق", "time": "1:00", "link": "https://example.com" },
+      { "home": "النرويج", "away": "السنغال", "time": "1:00", "link": "https://example.com" },
+      { "home": "الأردن", "away": "الجزائر", "time": "4:00", "link": "https://example.com" },
+      { "home": "البرتغال", "away": "أوزبكستان", "time": "6:00", "link": "https://example.com" },
+      { "home": "إنجلترا", "away": "غانا", "time": "9:00", "link": "https://example.com" }
+    ]
+  },
+  {
+    "date": "2026/06/24",
+    "matches": [
+      { "home": "بنما", "away": "كرواتيا", "time": "12:00", "link": "https://example.com" },
+      { "home": "كولومبيا", "away": "الكونغو", "time": "3:00", "link": "https://example.com" },
+      { "home": "سويسرا", "away": "كندا", "time": "8:00", "link": "https://example.com" },
+      { "home": "البوسنة", "away": "قطر", "time": "8:00", "link": "https://example.com" }
+    ]
+  },
+  {
+    "date": "2026/06/25",
+    "matches": [
+      { "home": "اسكتلندا", "away": "البرازيل", "time": "11:00", "link": "https://example.com" },
+      { "home": "المغرب", "away": "هايتي", "time": "11:00", "link": "https://example.com" },
+      { "home": "التشيك", "away": "المكسيك", "time": "2:00", "link": "https://example.com" },
+      { "home": "جنوب أفريقيا", "away": "كوريا الجنوبية", "time": "2:00", "link": "https://example.com" },
+      { "home": "الإكوادور", "away": "ألمانيا", "time": "9:00", "link": "https://example.com" },
+      { "home": "كوراساو", "away": "ساحل العاج", "time": "9:00", "link": "https://example.com" }
+    ]
+  },
+  {
+    "date": "2026/06/26",
+    "matches": [
+      { "home": "تونس", "away": "هولندا", "time": "12:00", "link": "https://example.com" },
+      { "home": "اليابان", "away": "السويد", "time": "12:00", "link": "https://example.com" },
+      { "home": "تركيا", "away": "الولايات المتحدة", "time": "3:00", "link": "https://example.com" },
+      { "home": "باراغواي", "away": "أستراليا", "time": "3:00", "link": "https://example.com" },
+      { "home": "النرويج", "away": "فرنسا", "time": "8:00", "link": "https://example.com" },
+      { "home": "السنغال", "away": "العراق", "time": "8:00", "link": "https://example.com" }
+    ]
+  },
+  {
+    "date": "2026/06/27",
+    "matches": [
+      { "home": "الأوروغواي", "away": "إسبانيا", "time": "1:00", "link": "https://example.com" },
+      { "home": "الرأس الأخضر", "away": "السعودية", "time": "1:00", "link": "https://example.com" },
+      { "home": "نيوزيلندا", "away": "بلجيكا", "time": "4:00", "link": "https://example.com" },
+      { "home": "مصر", "away": "إيران", "time": "4:00", "link": "https://example.com" }
+    ]
+  },
+  {
+    "date": "2026/06/28",
+    "matches": [
+      { "home": "بنما", "away": "إنجلترا", "time": "10:00", "link": "https://example.com" },
+      { "home": "كرواتيا", "away": "غانا", "time": "10:00", "link": "https://example.com" },
+      { "home": "كولومبيا", "away": "البرتغال", "time": "12:00", "link": "https://example.com" },
+      { "home": "الكونغو", "away": "أوزبكستان", "time": "12:00", "link": "https://example.com" },
+      { "home": "الأردن", "away": "الأرجنتين", "time": "3:00", "link": "https://example.com" },
+      { "home": "الجزائر", "away": "النمسا", "time": "3:00", "link": "https://example.com" }
     ]
   }
 ]
