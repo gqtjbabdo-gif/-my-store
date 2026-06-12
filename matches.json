@@ -1,12 +1,11 @@
 [
-    {
-        "day": "Today",
-        "matches": [
-            {
-                "home": "Team A",
-                "away": "Team B",
-                "link": "https://example.com/stream"
-            }
-        ]
-    }
+  {
+    "matches": [
+      {
+        "home": "فريق أ",
+        "away": "فريق ب",
+        "link": "https://www.google.com"
+      }
+    ]
+  }
 ]
