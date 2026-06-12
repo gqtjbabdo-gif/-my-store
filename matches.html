@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>جدول المباريات الجديد</title>
+    <style>
+        .match-card { border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 8px; }
+        a { background: blue; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>مباريات اليوم</h1>
+    <div id="matches-container"></div>
+
+    <script>
+        fetch('./matches.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('matches-container');
+                data.forEach(day => {
+                    day.matches.forEach(match => {
+                        const div = document.createElement('div');
+                        div.className = 'match-card';
+                        div.innerHTML = `<p>${match.home} vs ${match.away}</p>
+                                        <a href="${match.link}" target="_blank">مشاهدة المباراة</a>`;
+                        container.appendChild(div);
+                    });
+                });
+            });
+    </script>
+</body>
+</html>
