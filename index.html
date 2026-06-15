@@ -13,6 +13,8 @@
     <meta name="description" content="Watch the 2026 FIFA World Cup matches live with our updated schedule and direct links.">
     <meta name="keywords" content="2026 World Cup, FIFA World Cup, watch football live, football schedule, World Cup matches, live stream football">
     <title>2026 FIFA World Cup Schedule</title>
+    <!-- HLS.js library for m3u8 streaming -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
         * {
             margin: 0;
@@ -24,10 +26,9 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #0a0c10;
             color: #ffffff;
-            padding-bottom: 70px; /* space for bottom nav */
+            padding-bottom: 70px;
         }
 
-        /* Header */
         .app-header {
             text-align: center;
             padding: 20px 16px 10px;
@@ -45,7 +46,6 @@
             letter-spacing: -0.5px;
         }
 
-        /* Date headers */
         .date-header {
             background: #1e222b;
             margin: 16px 16px 8px;
@@ -55,10 +55,8 @@
             font-weight: 600;
             color: #ffa502;
             display: inline-block;
-            width: auto;
         }
 
-        /* Match card */
         .match-card {
             background: #1a1e26;
             border-radius: 20px;
@@ -76,7 +74,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            text-align: center;
             margin-bottom: 12px;
             font-weight: 600;
             font-size: 1.1rem;
@@ -124,13 +121,14 @@
             transition: background 0.2s;
             border: none;
             cursor: pointer;
+            width: 100%;
         }
 
         .watch-btn:hover {
             background-color: #e62e1f;
         }
 
-        /* Bottom navigation bar (exactly as in screenshot) */
+        /* Bottom navigation bar */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -165,7 +163,6 @@
             color: #ffa502;
         }
 
-        /* small adjustments */
         .container {
             max-width: 600px;
             margin: 0 auto;
@@ -175,6 +172,53 @@
             display: flex;
             justify-content: flex-start;
             padding-left: 16px;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 201;
+            background: rgba(0,0,0,0.5);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        .modal-close:hover {
+            background: red;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
         }
     </style>
 </head>
@@ -186,32 +230,24 @@
 
 <div id="container" class="container"></div>
 
-<!-- Bottom Navigation (Browser, VPN, K Wallet, Inbox, Setting) -->
 <div class="bottom-nav">
-    <div class="nav-item">
-        <span>🌐</span>
-        <span>Browser</span>
-    </div>
-    <div class="nav-item">
-        <span>🛡️</span>
-        <span>VPN</span>
-    </div>
-    <div class="nav-item">
-        <span>💳</span>
-        <span>K Wallet</span>
-    </div>
-    <div class="nav-item">
-        <span>📥</span>
-        <span>Inbox</span>
-    </div>
-    <div class="nav-item">
-        <span>⚙️</span>
-        <span>Setting</span>
+    <div class="nav-item"><span>🌐</span><span>Browser</span></div>
+    <div class="nav-item"><span>🛡️</span><span>VPN</span></div>
+    <div class="nav-item"><span>💳</span><span>K Wallet</span></div>
+    <div class="nav-item"><span>📥</span><span>Inbox</span></div>
+    <div class="nav-item"><span>⚙️</span><span>Setting</span></div>
+</div>
+
+<!-- Video Modal -->
+<div id="videoModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" id="closeModal">&times;</span>
+        <video id="streamPlayer" controls autoplay width="100%" height="auto"></video>
     </div>
 </div>
 
 <script>
-    // Full match data from your provided schedule (including all dates)
+    // Full match data (same as original, includes all dates)
     const matchesData = [
         { "date": "June 11, 2026", "matches": [{ "home": "Mexico", "away": "South Africa", "time": "8:00 PM", "link": "https://link-center.net/6427270/HMiPdW0eToJK" }] },
         { "date": "June 12, 2026", "matches": [
@@ -235,7 +271,6 @@
             { "home": "Spain", "away": "Cape Verde", "time": "5:00 PM", "link": "#" },
             { "home": "Belgium", "away": "Egypt", "time": "8:00 PM", "link": "#" }
         ]},
-        // Additional days from your long schedule (June 16–28)
         { "date": "June 16, 2026", "matches": [
             { "home": "Saudi Arabia", "away": "Paraguay", "time": "11:00 AM", "link": "#" },
             { "home": "Iran", "away": "New Zealand", "time": "2:00 PM", "link": "#" },
@@ -318,6 +353,72 @@
         ]}
     ];
 
+    // Helper: check if link is a direct video stream (m3u8, mp4, etc.)
+    function isStreamLink(link) {
+        if (!link || link === '#') return false;
+        // Streamable extensions or typical streaming patterns
+        return link.includes('.m3u8') || link.includes('.mp4') || link.includes('manifest') || link.includes('stream');
+    }
+
+    // Global HLS instance and video element
+    let currentHls = null;
+    const modal = document.getElementById('videoModal');
+    const videoPlayer = document.getElementById('streamPlayer');
+    const closeModalBtn = document.getElementById('closeModal');
+
+    function closeModal() {
+        modal.style.display = 'none';
+        if (currentHls) {
+            currentHls.destroy();
+            currentHls = null;
+        }
+        videoPlayer.pause();
+        videoPlayer.src = '';
+    }
+
+    function openVideoModal(streamUrl) {
+        // Reset player
+        if (currentHls) {
+            currentHls.destroy();
+            currentHls = null;
+        }
+        videoPlayer.src = '';
+        
+        // Check if HLS is supported and URL is m3u8
+        if (Hls.isSupported() && (streamUrl.includes('.m3u8') || streamUrl.includes('m3u8'))) {
+            currentHls = new Hls();
+            currentHls.loadSource(streamUrl);
+            currentHls.attachMedia(videoPlayer);
+            currentHls.on(Hls.Events.MANIFEST_PARSED, function() {
+                videoPlayer.play().catch(e => console.log("Autoplay prevented:", e));
+            });
+        } 
+        else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl') && streamUrl.includes('.m3u8')) {
+            // For Safari native HLS
+            videoPlayer.src = streamUrl;
+            videoPlayer.play().catch(e => console.log("Autoplay prevented:", e));
+        }
+        else {
+            // Fallback: treat as normal video (mp4, etc.)
+            videoPlayer.src = streamUrl;
+            videoPlayer.play().catch(e => console.log("Autoplay prevented:", e));
+        }
+        modal.style.display = 'flex';
+    }
+
+    function handleWatchClick(link) {
+        if (!link || link === '#') {
+            alert("No stream link available for this match.");
+            return;
+        }
+        // If it's a redirect/shortener or external webpage (not direct video), open in new tab
+        if (link.includes('link-center.net') || link.includes('bit.ly') || (!isStreamLink(link) && !link.match(/\.(m3u8|mp4|mkv|ts)$/i))) {
+            window.open(link, '_blank');
+        } else {
+            openVideoModal(link);
+        }
+    }
+
     function renderMatches(data) {
         const container = document.getElementById('container');
         container.innerHTML = data.map(day => `
@@ -332,11 +433,25 @@
                         <div class="team away">${m.away}</div>
                     </div>
                     <div class="match-time">⏱️ ${m.time}</div>
-                    <a href="${m.link}" target="_blank" class="watch-btn">🎥 Watch Match</a>
+                    <button class="watch-btn" data-link="${m.link}">🎥 Watch Match</button>
                 </div>
             `).join('')}
         `).join('');
+
+        // Attach event listeners to all watch buttons
+        document.querySelectorAll('.watch-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const link = btn.getAttribute('data-link');
+                handleWatchClick(link);
+            });
+        });
     }
+
+    // Close modal when clicking outside content or on close button
+    closeModalBtn.addEventListener('click', closeModal);
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
 
     renderMatches(matchesData);
 </script>
