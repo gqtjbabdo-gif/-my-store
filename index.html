@@ -6,93 +6,339 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-3VQB84YVD5');
     </script>
-    
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="Watch the 2026 FIFA World Cup matches live with our updated schedule and direct links.">
     <meta name="keywords" content="2026 World Cup, FIFA World Cup, watch football live, football schedule, World Cup matches, live stream football">
-    
     <title>2026 FIFA World Cup Schedule</title>
     <style>
-        :root {
-            --bg-dark: #1a1c23;
-            --card-bg: #2f3542;
-            --accent-orange: #ffa502;
-            --accent-blue: #7ed6df;
-            --btn-red: #ff0000;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        body { font-family: sans-serif; background-color: var(--bg-dark); color: #ffffff; padding: 20px; margin: 0; }
-        h2 { text-align: center; color: var(--accent-orange); margin-bottom: 30px; }
-        .date-header { background: var(--card-bg); padding: 10px; border-radius: 8px; margin: 20px 0 10px 0; text-align: center; font-weight: bold; color: var(--accent-blue); }
-        .match-card { display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 4px solid var(--accent-orange); }
-        .team { display: flex; align-items: center; gap: 10px; width: 35%; font-size: 0.95em; }
-        .team.away { justify-content: flex-end; }
-        .flag { width: 30px; height: 30px; border-radius: 4px; object-fit: cover; }
-        .middle-section { display: flex; flex-direction: column; align-items: center; width: 30%; gap: 8px; }
-        .time { font-weight: bold; color: #fff; background: var(--bg-dark); padding: 4px 10px; border-radius: 4px; font-size: 0.8em; }
-        .watch-btn { background-color: var(--btn-red); color: white; padding: 6px 16px; border-radius: 5px; text-decoration: none; font-size: 0.8em; font-weight: bold; transition: background 0.3s ease; }
-        .watch-btn:hover { background-color: #cc0000; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0c10;
+            color: #ffffff;
+            padding-bottom: 70px; /* space for bottom nav */
+        }
+
+        /* Header */
+        .app-header {
+            text-align: center;
+            padding: 20px 16px 10px;
+            background: #0a0c10;
+            border-bottom: 1px solid #2a2f3a;
+        }
+
+        .app-header h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #ffa502, #ff6348);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        /* Date headers */
+        .date-header {
+            background: #1e222b;
+            margin: 16px 16px 8px;
+            padding: 10px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #ffa502;
+            display: inline-block;
+            width: auto;
+        }
+
+        /* Match card */
+        .match-card {
+            background: #1a1e26;
+            border-radius: 20px;
+            margin: 12px 16px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
+        }
+
+        .match-card:hover {
+            transform: scale(1.01);
+        }
+
+        .teams {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .team {
+            flex: 1;
+        }
+
+        .team.home {
+            text-align: right;
+            padding-right: 8px;
+        }
+
+        .team.away {
+            text-align: left;
+            padding-left: 8px;
+        }
+
+        .vs {
+            font-size: 0.8rem;
+            color: #aaa;
+            background: #2a2f3a;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .match-time {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #aaa;
+            margin: 8px 0 12px;
+        }
+
+        .watch-btn {
+            display: block;
+            background-color: #ff3b30;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .watch-btn:hover {
+            background-color: #e62e1f;
+        }
+
+        /* Bottom navigation bar (exactly as in screenshot) */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #11141c;
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 12px 14px;
+            border-top: 1px solid #2a2f3a;
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #8e95a5;
+            font-size: 0.7rem;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-item span:first-child {
+            font-size: 1.5rem;
+        }
+
+        .nav-item.active {
+            color: #ffa502;
+        }
+
+        /* small adjustments */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .date-header-wrapper {
+            display: flex;
+            justify-content: flex-start;
+            padding-left: 16px;
+        }
     </style>
 </head>
 <body>
 
-    <h2>2026 World Cup Match Center</h2>
-    <div id="container"></div>
+<div class="app-header">
+    <h1>⚽ 2026 World Cup Match Center</h1>
+</div>
 
-    <script>
-        const matchesData = [
-            { "date": "June 11, 2026", "matches": [{ "home": "Mexico", "homeCode": "MX", "away": "South Africa", "awayCode": "ZA", "time": "8:00 PM", "link": "https://link-center.net/6427270/HMiPdW0eToJK" }] },
-            { "date": "June 12, 2026", "matches": [
-                { "home": "South Korea", "homeCode": "KR", "away": "Czechia", "awayCode": "CZ", "time": "8:00 PM", "link": "#" },
-                { "home": "Canada", "homeCode": "CA", "away": "Bosnia", "awayCode": "BA", "time": "8:00 PM", "link": " https://link-center.net/6427270/2MXUEVZEE06u " }
-            ]},
-            { "date": "June 13, 2026", "matches": [
-                { "home": "USA", "homeCode": "US", "away": "Paraguay", "awayCode": "PY", "time": "2:00 AM", "link": "#" },
-                { "home": "Qatar", "homeCode": "QA", "away": "Switzerland", "awayCode": "CH", "time": "8:00 PM", "link": "https://bit.ly/4uDQST0 " }
-            ]},
-            { "date": "June 14, 2026", "matches": [
-                { "home": "Brazil", "homeCode": "BR", "away": "Morocco", "awayCode": "MA", "time": "11:00 PM", "link": "#" },
-                { "home": "Haiti", "homeCode": "HT", "away": "Scotland", "awayCode": "GB-SCT", "time": "2:00 AM", "link": "#" },
-                { "home": "Australia", "homeCode": "AU", "away": "Turkey", "awayCode": "TR", "time": "5:00 AM", "link": "#" },
-                { "home": "Germany", "homeCode": "DE", "away": "Curacao", "awayCode": "CW", "time": "6:00 PM", "link": "#" },
-                { "home": "Netherlands", "homeCode": "NL", "away": "Japan", "awayCode": "JP", "time": "9:00 PM", "link": "#" }
-            ]},
-            { "date": "June 15, 2026", "matches": [
-                { "home": "Ivory Coast", "homeCode": "CI", "away": "Ecuador", "awayCode": "EC", "time": "12:00 AM", "link": "#" },
-                { "home": "Sweden", "homeCode": "SE", "away": "Tunisia", "awayCode": "TN", "time": "3:00 AM", "link": "#" },
-                { "home": "Spain", "homeCode": "ES", "away": "Cape Verde", "awayCode": "CV", "time": "5:00 PM", "link": "#" },
-                { "home": "Belgium", "homeCode": "BE", "away": "Egypt", "awayCode": "EG", "time": "8:00 PM", "link": "#" }
-            ]}
-        ];
+<div id="container" class="container"></div>
 
-        function renderMatches(data) {
-            const container = document.getElementById('container');
-            container.innerHTML = data.map(day => `
-                <div class="date-header">${day.date}</div>
-                ${day.matches.map(m => `
-                    <div class="match-card">
-                        <div class="team">
-                            ${m.home} 
-                            <img class="flag" src="https://flagsapi.com/${m.homeCode}/flat/64.png" alt="${m.home}">
-                        </div>
-                        <div class="middle-section">
-                            <div class="time">${m.time}</div>
-                            <a href="${m.link}" target="_blank" class="watch-btn">Watch Match</a>
-                        </div>
-                        <div class="team away">
-                            <img class="flag" src="https://flagsapi.com/${m.awayCode}/flat/64.png" alt="${m.away}"> 
-                            ${m.away}
-                        </div>
+<!-- Bottom Navigation (Browser, VPN, K Wallet, Inbox, Setting) -->
+<div class="bottom-nav">
+    <div class="nav-item">
+        <span>🌐</span>
+        <span>Browser</span>
+    </div>
+    <div class="nav-item">
+        <span>🛡️</span>
+        <span>VPN</span>
+    </div>
+    <div class="nav-item">
+        <span>💳</span>
+        <span>K Wallet</span>
+    </div>
+    <div class="nav-item">
+        <span>📥</span>
+        <span>Inbox</span>
+    </div>
+    <div class="nav-item">
+        <span>⚙️</span>
+        <span>Setting</span>
+    </div>
+</div>
+
+<script>
+    // Full match data from your provided schedule (including all dates)
+    const matchesData = [
+        { "date": "June 11, 2026", "matches": [{ "home": "Mexico", "away": "South Africa", "time": "8:00 PM", "link": "https://link-center.net/6427270/HMiPdW0eToJK" }] },
+        { "date": "June 12, 2026", "matches": [
+            { "home": "South Korea", "away": "Czechia", "time": "8:00 PM", "link": "#" },
+            { "home": "Canada", "away": "Bosnia and Herzegovina", "time": "8:00 PM", "link": "https://link-center.net/6427270/2MXUEVZEE06u" }
+        ]},
+        { "date": "June 13, 2026", "matches": [
+            { "home": "United States", "away": "Paraguay", "time": "2:00 AM", "link": "#" },
+            { "home": "Qatar", "away": "Switzerland", "time": "8:00 PM", "link": "https://bit.ly/4uDQST0" }
+        ]},
+        { "date": "June 14, 2026", "matches": [
+            { "home": "Brazil", "away": "Morocco", "time": "11:00 PM", "link": "#" },
+            { "home": "Haiti", "away": "Scotland", "time": "2:00 AM", "link": "#" },
+            { "home": "Australia", "away": "Turkey", "time": "5:00 AM", "link": "#" },
+            { "home": "Germany", "away": "Curacao", "time": "6:00 PM", "link": "#" },
+            { "home": "Netherlands", "away": "Japan", "time": "9:00 PM", "link": "#" }
+        ]},
+        { "date": "June 15, 2026", "matches": [
+            { "home": "Ivory Coast", "away": "Ecuador", "time": "12:00 AM", "link": "#" },
+            { "home": "Sweden", "away": "Tunisia", "time": "3:00 AM", "link": "#" },
+            { "home": "Spain", "away": "Cape Verde", "time": "5:00 PM", "link": "#" },
+            { "home": "Belgium", "away": "Egypt", "time": "8:00 PM", "link": "#" }
+        ]},
+        // Additional days from your long schedule (June 16–28)
+        { "date": "June 16, 2026", "matches": [
+            { "home": "Saudi Arabia", "away": "Paraguay", "time": "11:00 AM", "link": "#" },
+            { "home": "Iran", "away": "New Zealand", "time": "2:00 PM", "link": "#" },
+            { "home": "France", "away": "Senegal", "time": "8:00 PM", "link": "#" }
+        ]},
+        { "date": "June 17, 2026", "matches": [
+            { "home": "Iraq", "away": "Norway", "time": "11:00 AM", "link": "#" },
+            { "home": "Argentina", "away": "Algeria", "time": "2:00 PM", "link": "#" },
+            { "home": "Austria", "away": "Jordan", "time": "5:00 PM", "link": "#" },
+            { "home": "Portugal", "away": "Congo", "time": "6:00 PM", "link": "#" },
+            { "home": "England", "away": "Croatia", "time": "9:00 PM", "link": "#" }
+        ]},
+        { "date": "June 18, 2026", "matches": [
+            { "home": "Ghana", "away": "South Africa", "time": "5:00 PM", "link": "#" },
+            { "home": "Switzerland", "away": "Bosnia and Herzegovina", "time": "8:00 PM", "link": "#" }
+        ]},
+        { "date": "June 20, 2026", "matches": [
+            { "home": "Canada", "away": "Qatar", "time": "11:00 AM", "link": "#" },
+            { "home": "Mexico", "away": "South Korea", "time": "2:00 PM", "link": "#" },
+            { "home": "United States", "away": "Australia", "time": "8:00 PM", "link": "#" },
+            { "home": "Scotland", "away": "Morocco", "time": "11:00 AM", "link": "#" },
+            { "home": "Brazil", "away": "Haiti", "time": "1:30 PM", "link": "#" },
+            { "home": "Turkey", "away": "Paraguay", "time": "4:00 PM", "link": "#" },
+            { "home": "Netherlands", "away": "Sweden", "time": "6:00 PM", "link": "#" },
+            { "home": "Germany", "away": "Ivory Coast", "time": "9:00 PM", "link": "#" }
+        ]},
+        { "date": "June 21, 2026", "matches": [
+            { "home": "Ecuador", "away": "Curacao", "time": "11:00 AM", "link": "#" },
+            { "home": "Tunisia", "away": "Japan", "time": "5:00 PM", "link": "#" },
+            { "home": "Spain", "away": "Saudi Arabia", "time": "5:00 PM", "link": "#" },
+            { "home": "Belgium", "away": "Iran", "time": "8:00 PM", "link": "#" }
+        ]},
+        { "date": "June 22, 2026", "matches": [
+            { "home": "Paraguay", "away": "Cape Verde", "time": "11:00 AM", "link": "#" },
+            { "home": "New Zealand", "away": "Egypt", "time": "2:00 PM", "link": "#" },
+            { "home": "Argentina", "away": "Austria", "time": "6:00 PM", "link": "#" }
+        ]},
+        { "date": "June 23, 2026", "matches": [
+            { "home": "France", "away": "Iraq", "time": "1:00 AM", "link": "#" },
+            { "home": "Norway", "away": "Senegal", "time": "1:00 AM", "link": "#" },
+            { "home": "Jordan", "away": "Algeria", "time": "4:00 PM", "link": "#" },
+            { "home": "Portugal", "away": "Uzbekistan", "time": "6:00 PM", "link": "#" },
+            { "home": "England", "away": "Ghana", "time": "9:00 PM", "link": "#" }
+        ]},
+        { "date": "June 24, 2026", "matches": [
+            { "home": "Panama", "away": "Croatia", "time": "12:00 PM", "link": "#" },
+            { "home": "Colombia", "away": "Congo", "time": "3:00 PM", "link": "#" },
+            { "home": "Switzerland", "away": "Canada", "time": "8:00 PM", "link": "#" },
+            { "home": "Bosnia and Herzegovina", "away": "Qatar", "time": "8:00 PM", "link": "#" }
+        ]},
+        { "date": "June 25, 2026", "matches": [
+            { "home": "Scotland", "away": "Brazil", "time": "11:00 AM", "link": "#" },
+            { "home": "Morocco", "away": "Haiti", "time": "11:00 AM", "link": "#" },
+            { "home": "Czechia", "away": "Mexico", "time": "2:00 PM", "link": "#" },
+            { "home": "South Africa", "away": "South Korea", "time": "2:00 PM", "link": "#" },
+            { "home": "Ecuador", "away": "Germany", "time": "9:00 PM", "link": "#" },
+            { "home": "Curacao", "away": "Ivory Coast", "time": "9:00 PM", "link": "#" }
+        ]},
+        { "date": "June 26, 2026", "matches": [
+            { "home": "Tunisia", "away": "Netherlands", "time": "12:00 PM", "link": "#" },
+            { "home": "Japan", "away": "Sweden", "time": "12:00 PM", "link": "#" },
+            { "home": "Turkey", "away": "United States", "time": "3:00 PM", "link": "#" },
+            { "home": "Paraguay", "away": "Australia", "time": "3:00 PM", "link": "#" },
+            { "home": "Norway", "away": "France", "time": "8:00 PM", "link": "#" },
+            { "home": "Senegal", "away": "Iraq", "time": "8:00 PM", "link": "#" }
+        ]},
+        { "date": "June 27, 2026", "matches": [
+            { "home": "Uruguay", "away": "Spain", "time": "1:00 PM", "link": "#" },
+            { "home": "Cape Verde", "away": "Saudi Arabia", "time": "1:00 PM", "link": "#" },
+            { "home": "New Zealand", "away": "Belgium", "time": "4:00 PM", "link": "#" },
+            { "home": "Egypt", "away": "Iran", "time": "4:00 PM", "link": "#" }
+        ]},
+        { "date": "June 28, 2026", "matches": [
+            { "home": "Panama", "away": "England", "time": "10:00 AM", "link": "#" },
+            { "home": "Croatia", "away": "Ghana", "time": "10:00 AM", "link": "#" },
+            { "home": "Colombia", "away": "Portugal", "time": "12:00 PM", "link": "#" },
+            { "home": "Congo", "away": "Uzbekistan", "time": "12:00 PM", "link": "#" },
+            { "home": "Jordan", "away": "Argentina", "time": "3:00 PM", "link": "#" },
+            { "home": "Algeria", "away": "Austria", "time": "3:00 PM", "link": "#" }
+        ]}
+    ];
+
+    function renderMatches(data) {
+        const container = document.getElementById('container');
+        container.innerHTML = data.map(day => `
+            <div class="date-header-wrapper">
+                <div class="date-header">📅 ${day.date}</div>
+            </div>
+            ${day.matches.map(m => `
+                <div class="match-card">
+                    <div class="teams">
+                        <div class="team home">${m.home}</div>
+                        <div class="vs">VS</div>
+                        <div class="team away">${m.away}</div>
                     </div>
-                `).join('')}
-            `).join('');
-        }
+                    <div class="match-time">⏱️ ${m.time}</div>
+                    <a href="${m.link}" target="_blank" class="watch-btn">🎥 Watch Match</a>
+                </div>
+            `).join('')}
+        `).join('');
+    }
 
-        renderMatches(matchesData);
-    </script>
+    renderMatches(matchesData);
+</script>
 </body>
 </html>
